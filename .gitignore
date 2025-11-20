@@ -1,0 +1,44 @@
+# Build artifacts
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.lib
+
+# Debuggers
+*.gch
+*.pch
+
+# Binaries
+/main
+/test
+/a.out
+
+# Temporary files
+*.tmp
+*.log
+
+# Compiling scripts temporary files
+*.d
+
+# Editors and IDEs
+# VSCode
+.vscode/
+*.code-workspace
+
+# CLion / JetBrains
+.idea/
+cmake-build-*/
+
+# Vim/NeoVim
+*.swp
+*.swo
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
