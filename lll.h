@@ -30,6 +30,7 @@
 #define LLL_DEBUG   
 
 #include <stdlib.h>
+#include <stdio.h>
 
 
 
@@ -118,11 +119,11 @@ struct Node
 #define LLL_DEBUG_NODE(n) \
     do \
     { \
-        if (n) \ 
+        if (n) \
         { \
             LLL_DEBUG_PRINT("Node at %p -> id: %d, next: %p\n", (void*)(n), (n)->id, (void*)((n)->next)); \
         } \
-        else \ 
+        else \
         { \
             LLL_DEBUG_PRINT("Node is NULL\n"); \
         } \
@@ -145,7 +146,7 @@ struct Node
  *  - Usa DEBUG_NODE per stampare ogni nodo.
  */
 #define LLL_DEBUG_LIST(head) \
-    do \ 
+    do \
     { \
         node_ptr tmp=(head); \
         int idx=0; \
