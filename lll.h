@@ -71,7 +71,7 @@ struct Node
 
 
 
-#ifdef LL_DEBUG
+#ifdef LLL_DEBUG
 
 
 /*
