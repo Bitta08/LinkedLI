@@ -24,10 +24,10 @@
 
 /*Definizione versione LLL*/
 #define LLL_VERSION_MAJOR 0
-#define LLL_VERSION_MINOR 1
+#define LLL_VERSION_MINOR 2
 
 /*Definizione modalità Debug per LLL*/
-#define LLL_DEBUG   
+//#define LLL_DEBUG 
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -71,6 +71,7 @@ struct Node
 
 
 
+#ifdef LL_DEBUG
 
 
 /*
@@ -166,7 +167,7 @@ struct Node
 
 
 
-
+#endif
 
 
 
@@ -337,6 +338,158 @@ node_ptr addNodoInPosition(node_ptr head, int number_id, int position)
 }
 
 
+/*
+ * Funzione: debugPrint
+ * ---------------------------------------
+ * Stampa un semplice messaggio di debug sulla console.
+ *
+ * Parametri:
+ *  - msg : stringa da stampare.
+ *
+ * Comportamento:
+ *  - Aggiunge automaticamente il prefisso "[DEBUG] ".
+ *  - Termina la stampa con un a capo.
+ *
+ * Utilizzo tipico:
+ *      debugPrint("Lista vuota");
+ *
+ * Note:
+ *  - Questa funzione NON supporta formattazioni tipo printf.
+ *  - È progettata per essere semplice e compatibile con tutti i compilatori.
+ */
+void debugPrint(const char *msg)
+{
+    printf("[DEBUG] %s\n", msg);
+}
+
+
+
+/*
+ * Funzione: debugNode
+ * ---------------------------------------
+ * Stampa le informazioni di un singolo nodo della lista collegata semplice.
+ *
+ * Parametri:
+ *  - n : puntatore al nodo da stampare.
+ *
+ * Comportamento:
+ *  - Se il nodo esiste, stampa il suo campo id.
+ *  - Se il nodo è NULL, stampa un messaggio indicante che il nodo non esiste.
+ *
+ * Formato di stampa:
+ *      [DEBUG] Node -> id: <valore>
+ *      oppure
+ *      [DEBUG] Node is NULL
+ *
+ * Utilizzo tipico:
+ *      debugNode(current);
+ *
+ * Note:
+ *  - Questa funzione NON modifica il nodo.
+ *  - È pensata per debug rapido e semplice.
+ */
+void debugNode(node_ptr n)
+{
+    if (n)
+        printf("[DEBUG] Node -> id: %d\n", n->id);
+    else
+        printf("[DEBUG] Node is NULL\n");
+}
+
+
+
+
+/*
+ * Funzione: debugList
+ * ---------------------------------------
+ * Stampa tutti i nodi di una lista collegata semplice in modo lineare.
+ *
+ * Parametri:
+ *  - head : puntatore al primo nodo della lista (può essere NULL).
+ *
+ * Comportamento:
+ *  - Se la lista è vuota, stampa "[DEBUG] Empty list".
+ *  - Altrimenti stampa ogni nodo con indice e id.
+ *
+ * Formato di stampa:
+ *      [DEBUG] Node[0]: <id>
+ *      [DEBUG] Node[1]: <id>
+ *      ...
+ *
+ * Utilizzo tipico:
+ *      debugList(head);
+ *
+ * Note:
+ *  - Questa funzione NON modifica la lista.
+ *  - È progettata per essere semplice e compatibile con compilatori vecchi
+ *    come Dev-C++/MinGW.
+ */
+void debugList(node_ptr head)
+{
+    node_ptr tmp = head;
+    int i = 0;
+
+    if (!tmp)
+    {
+        printf("[DEBUG] Empty list\n");
+        return;
+    }
+
+    while (tmp)
+    {
+        printf("[DEBUG] Node[%d]: %d\n", i, tmp->id);
+        tmp = tmp->next;
+        i++;
+    }
+}
+
+
+
+
+
+/*
+ * Funzione: printList
+ * ---------------------------------------
+ * Stampa l'intera lista collegata semplice in un formato lineare,
+ * utile per verificare rapidamente l'ordine dei nodi o il risultato
+ * di operazioni di inserimento, rimozione o ricerca.
+ *
+ * Formato di stampa:
+ *      id1 -> id2 -> id3 -> ... -> NULL
+ *
+ * Dove:
+ *  - Ogni "id" rappresenta il valore intero contenuto nel nodo.
+ *  - La freccia "->" indica il collegamento al nodo successivo.
+ *  - "NULL" indica la fine della lista.
+ *
+ * Parametri:
+ *  - head : puntatore al primo nodo della lista (può essere NULL).
+ *
+ * Comportamento:
+ *  - Se la lista è vuota (head == NULL), stampa semplicemente:
+ *          NULL
+ *  - Altrimenti itera nodo per nodo stampando il campo id.
+ *
+ * Utilizzo tipico:
+ *      printList(head);
+ *
+ * Note:
+ *  - Questa funzione NON modifica la lista.
+ *  - È progettata per essere semplice e compatibile con tutti i compilatori,
+ *    incluso Dev-C++/MinGW.
+ */
+void printList(node_ptr head)
+{
+    node_ptr current = head;
+
+    while (current)
+    {
+        printf("%d -> ", current->id);
+        current = current->next;
+    }
+
+    printf("NULL\n");
+}
 
 
 
